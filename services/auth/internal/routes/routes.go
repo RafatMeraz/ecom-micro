@@ -5,10 +5,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func SetUpRoutes(app *fiber.App) {
-	healthHandler := handler.NewHealthHandler()
-
+func SetUpRoutes(app *fiber.App, healthHandler *handler.HealthHandler) *fiber.App {
 	router := app.Group("")
 
 	router.Get("/health", healthHandler.GetHealth)
+
+	return app
 }
