@@ -3,6 +3,7 @@ package configs
 type Config struct {
 	HTTPServer HTTPServerConfig
 	DB         DBConfig
+	RateLimit  RateLimit
 }
 
 type HTTPServerConfig struct {
@@ -15,4 +16,8 @@ type DBConfig struct {
 	Password string
 	Name     string
 	User     string
+}
+
+type RateLimit struct {
+	LimitPerMin int
 }

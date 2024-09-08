@@ -33,6 +33,9 @@ func NewConfig() (*Config, error) {
 			Password: v.GetString("DB.password"),
 			Name:     v.GetString("DB.name"),
 		},
+		RateLimit: RateLimit{
+			LimitPerMin: v.GetInt("RateLimit.limitPerMin"),
+		},
 	}
 
 	return &config, nil

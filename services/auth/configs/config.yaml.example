@@ -6,3 +6,5 @@ DB:
   pass: user@pass
   name: auth_db
   user: root
+RateLimit:
+  limitPerMin: 100

@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/RafatMeraz/ecom-micro/auth/configs"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/handler"
+	"github.com/RafatMeraz/ecom-micro/auth/internal/middleware"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/routes"
 	"github.com/RafatMeraz/ecom-micro/auth/server/http"
 	"go.uber.org/fx"
@@ -13,6 +14,8 @@ func main() {
 		configs.Module,
 		http.Module,
 		handler.Module,
+		middleware.Module,
+		fx.Invoke(middleware.SetupMiddlewares),
 		fx.Invoke(routes.SetUpRoutes),
 		fx.Invoke(http.StartServer),
 	)
