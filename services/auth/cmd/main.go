@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/RafatMeraz/ecom-micro/auth/configs"
+	"github.com/RafatMeraz/ecom-micro/auth/database"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/handler"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/middleware"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/routes"
@@ -12,6 +13,7 @@ import (
 func main() {
 	app := fx.New(
 		configs.Module,
+		database.Module,
 		http.Module,
 		handler.Module,
 		middleware.Module,

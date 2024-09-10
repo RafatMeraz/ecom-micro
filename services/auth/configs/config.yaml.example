@@ -1,7 +1,7 @@
 HttpServer:
   listenAddr: "localhost:8099"
 DB:
-  address: localhost
+  host: localhost
   port: 5432
   pass: user@pass
   name: auth_db

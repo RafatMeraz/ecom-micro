@@ -11,7 +11,7 @@ type HTTPServerConfig struct {
 }
 
 type DBConfig struct {
-	Address  string
+	Host     string
 	Port     int
 	Password string
 	Name     string
