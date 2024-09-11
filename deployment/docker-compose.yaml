@@ -1,0 +1,25 @@
+services:
+  db:
+    container_name: ecom-micro-db
+    image: postgres:16.3-alpine3.20
+    volumes:
+      - ecom-micro-data-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root#pass
+    ports:
+      - "5433:5432"
+    expose:
+      - "5433"
+  pgadmin:
+    container_name: ecom-micro-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root@pass
+    ports:
+      - "6969:80"
+
+volumes:
+  ecom-micro-data-volume:
+    driver: local
