@@ -6,11 +6,11 @@ services:
       - ecom-micro-data-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: root#pass
+      POSTGRES_PASSWORD: rootpass
     ports:
-      - "5433:5432"
+      - "5432:5432"
     expose:
-      - "5433"
+      - "5432"
   pgadmin:
     container_name: ecom-micro-pgadmin
     image: dpage/pgadmin4

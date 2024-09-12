@@ -4,7 +4,7 @@ DB:
   host: localhost
   port: 5432
   pass: user@pass
-  name: auth_db
+  name: ecom_micro_auth_db
   user: root
 RateLimit:
   limitPerMin: 100
