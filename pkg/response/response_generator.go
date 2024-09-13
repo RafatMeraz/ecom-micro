@@ -1,4 +1,4 @@
-package pkg
+package response
 
 import (
 	"github.com/RafatMeraz/ecom-micro/pkg/errors"
