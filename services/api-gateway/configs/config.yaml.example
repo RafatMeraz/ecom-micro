@@ -1,0 +1,5 @@
+HttpServer:
+  listenAddr: "localhost:8090"
+
+RateLimit:
+  limitPerMin: 100

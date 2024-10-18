@@ -1,8 +1,11 @@
 package middleware
 
-import "go.uber.org/fx"
+import (
+	"github.com/RafatMeraz/ecom-micro/pkg/middleware"
+	"go.uber.org/fx"
+)
 
 var Module = fx.Module("middleware",
-	fx.Provide(NewRateLimiterMiddleware),
-	fx.Provide(NewLoggerMiddleware),
+	fx.Provide(middleware.NewLoggerMiddleware),
+	fx.Provide(middleware.NewRateLimiterMiddleware),
 )
