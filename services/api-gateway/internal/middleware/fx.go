@@ -7,5 +7,5 @@ import (
 
 var Module = fx.Module("middleware",
 	fx.Provide(middleware.NewLoggerMiddleware),
-	fx.Provide(middleware.NewRateLimiterMiddleware),
+	//fx.Provide(middleware.NewRateLimiterMiddleware),
 )
