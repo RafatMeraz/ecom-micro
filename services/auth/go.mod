@@ -3,6 +3,7 @@ module github.com/RafatMeraz/ecom-micro/auth
 go 1.23.1
 
 require (
+	github.com/RafatMeraz/ecom-micro/pkg v0.0.0-20241018182549-41fa659c2a0d
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/spf13/viper v1.19.0
 	go.uber.org/fx v1.22.2
