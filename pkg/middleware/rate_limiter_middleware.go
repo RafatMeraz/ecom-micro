@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"github.com/RafatMeraz/ecom-micro/pkg/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"net/http"
@@ -8,19 +9,19 @@ import (
 )
 
 type RateLimiterMiddleware struct {
-	limitPerMinute int
+	rateLimitConfig models.RateLimitConfig
 }
 
-func NewRateLimiterMiddleware(limitPerMin int) *RateLimiterMiddleware {
+func NewRateLimiterMiddleware(rateLimitConfig models.RateLimitConfig) *RateLimiterMiddleware {
 	return &RateLimiterMiddleware{
-		limitPerMinute: limitPerMin,
+		rateLimitConfig: rateLimitConfig,
 	}
 }
 
 func (r RateLimiterMiddleware) FixedWindow() fiber.Handler {
 	return limiter.New(
 		limiter.Config{
-			Max:               r.limitPerMinute,
+			Max:               r.rateLimitConfig.RequestsPerMin,
 			Expiration:        1 * time.Minute,
 			LimiterMiddleware: limiter.FixedWindow{},
 			LimitReached: func(ctx *fiber.Ctx) error {
@@ -33,7 +34,7 @@ func (r RateLimiterMiddleware) FixedWindow() fiber.Handler {
 func (r RateLimiterMiddleware) SlidingWindow() fiber.Handler {
 	return limiter.New(
 		limiter.Config{
-			Max:               r.limitPerMinute,
+			Max:               r.rateLimitConfig.RequestsPerMin,
 			Expiration:        1 * time.Minute,
 			LimiterMiddleware: limiter.SlidingWindow{},
 			LimitReached: func(ctx *fiber.Ctx) error {

@@ -10,5 +10,5 @@ import (
 func SetupMiddlewares(app *fiber.App, config *configs.Config, loggerMiddleware *middleware.LoggerMiddleware) {
 	app.Use(requestid.New())
 	app.Use(loggerMiddleware.InfoLogger())
-	app.Use(middleware.NewRateLimiterMiddleware(config.RateLimit.LimitPerMin).FixedWindow())
+	app.Use(middleware.NewRateLimiterMiddleware(config.RateLimitConfig).FixedWindow())
 }

@@ -1,9 +1,11 @@
 package configs
 
+import "github.com/RafatMeraz/ecom-micro/pkg/models"
+
 type Config struct {
-	HTTPServer HTTPServerConfig
-	DB         DBConfig
-	RateLimit  RateLimit
+	HTTPServer      HTTPServerConfig
+	DB              DBConfig
+	RateLimitConfig models.RateLimitConfig
 }
 
 type HTTPServerConfig struct {
@@ -16,8 +18,4 @@ type DBConfig struct {
 	Password string
 	Name     string
 	User     string
-}
-
-type RateLimit struct {
-	LimitPerMin int
 }

@@ -1,14 +1,12 @@
 package configs
 
+import "github.com/RafatMeraz/ecom-micro/pkg/models"
+
 type Config struct {
-	HTTPServer HTTPServerConfig
-	RateLimit  RateLimit
+	HTTPServer      HTTPServerConfig
+	RateLimitConfig models.RateLimitConfig
 }
 
 type HTTPServerConfig struct {
 	ListenAddr string
-}
-
-type RateLimit struct {
-	LimitPerMin int
 }

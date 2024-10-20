@@ -2,6 +2,7 @@ package configs
 
 import (
 	"fmt"
+	"github.com/RafatMeraz/ecom-micro/pkg/models"
 	"github.com/spf13/viper"
 )
 
@@ -33,8 +34,8 @@ func NewConfig() (*Config, error) {
 			Password: v.GetString("DB.password"),
 			Name:     v.GetString("DB.name"),
 		},
-		RateLimit: RateLimit{
-			LimitPerMin: v.GetInt("RateLimit.limitPerMin"),
+		RateLimitConfig: models.RateLimitConfig{
+			RequestsPerMin: v.GetInt("RateLimit.limitPerMin"),
 		},
 	}
 

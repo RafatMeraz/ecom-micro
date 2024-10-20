@@ -2,6 +2,7 @@ package configs
 
 import (
 	"fmt"
+	"github.com/RafatMeraz/ecom-micro/pkg/models"
 	"github.com/spf13/viper"
 )
 
@@ -26,8 +27,8 @@ func NewConfig() (*Config, error) {
 		HTTPServer: HTTPServerConfig{
 			ListenAddr: v.GetString("HttpServer.listenAddr"),
 		},
-		RateLimit: RateLimit{
-			LimitPerMin: v.GetInt("RateLimit.limitPerMin"),
+		RateLimitConfig: models.RateLimitConfig{
+			RequestsPerMin: v.GetInt("RateLimit.limitPerMin"),
 		},
 	}
 
