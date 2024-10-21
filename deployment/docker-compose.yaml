@@ -1,9 +1,11 @@
+name: ecom-micro
+
 services:
-  db:
-    container_name: ecom-micro-db
+  auth-db:
+    container_name: auth-db
     image: postgres:16.3-alpine3.20
     volumes:
-      - ecom-micro-data-volume:/var/lib/postgresql/data
+      - auth-data-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: rootpass
@@ -21,5 +23,5 @@ services:
       - "6969:80"
 
 volumes:
-  ecom-micro-data-volume:
+  auth-data-volume:
     driver: local
