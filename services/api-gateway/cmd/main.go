@@ -17,6 +17,7 @@ func main() {
 		http.Module,
 		handler.Module,
 		middleware.Module,
+		fx.Invoke(routes.NewConsulClient),
 		fx.Invoke(func() {
 			authLogger := logger.NewLogger("api-gateway")
 			slog.SetDefault(authLogger)

@@ -26,6 +26,8 @@ func NewConfig() (*Config, error) {
 	config = Config{
 		HTTPServer: HTTPServerConfig{
 			ListenAddr: v.GetString("HttpServer.listenAddr"),
+			Address:    v.GetString("HttpServer.address"),
+			Port:       v.GetString("HttpServer.port"),
 		},
 		DB: DBConfig{
 			Host:     v.GetString("DB.host"),

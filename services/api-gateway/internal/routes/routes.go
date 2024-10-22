@@ -10,7 +10,7 @@ func SetUpRoutes(app *fiber.App, healthHandler *handler.HealthHandler) *fiber.Ap
 	router := app.Group("")
 
 	router.Get("/health", healthHandler.GetHealth)
-	router.All("/auth/*", proxy("http://127.0.0.1:8098/"))
+	router.All("/auth/*", proxy(GetServiceUrl(AuthServiceId)))
 
 	return app
 }

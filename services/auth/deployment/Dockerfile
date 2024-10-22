@@ -1,18 +1,27 @@
-FROM golang:1.22.4-alpine3.20
+# Dockerfile
+FROM golang:1.23.1 AS builder
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+# Copy go.mod and go.sum to the builder context
+COPY ../go.mod ../go.sum ./
 
+# Download dependencies
 RUN go mod download
 
-COPY . .
+# Copy the entire auth folder and pkg folder
+COPY ../ ./
 
-RUN go install github.com/swaggo/swag/cmd/swag@latest
-
-RUN swag init -g cmd/main.go
-
+# Build the application
 RUN go build -o ./ecom-micro-auth ./cmd
+
+# Final stage
+FROM alpine:3.20
+
+WORKDIR /app
+
+# Copy the built binary from the builder stage
+COPY --from=builder /app/ecom-micro-auth .
 
 EXPOSE 8099
 

@@ -10,6 +10,8 @@ type Config struct {
 
 type HTTPServerConfig struct {
 	ListenAddr string
+	Address    string
+	Port       string
 }
 
 type DBConfig struct {

@@ -21,7 +21,30 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root@pass
     ports:
       - "6969:80"
+  ecom-consul:
+    container_name: ecom-consul
+    image: consul:1.15.4
+    volumes:
+      - consul-data-volume:/var/lib/consul/data
+    ports:
+      - "8500:8500"
+    networks:
+      - ecom-network
+  ecom-auth:
+    build:
+      context: ../services/auth  # This should point to the auth directory
+      dockerfile: deployment/Dockerfile  # Specify the path to the Dockerfile
+    ports:
+      - "8099:8099"
+    networks:
+      - ecom-network
+
+networks:
+  ecom-network:
+    driver: bridge
 
 volumes:
   auth-data-volume:
+    driver: local
+  consul-data-volume:
     driver: local
