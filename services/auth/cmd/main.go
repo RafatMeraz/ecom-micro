@@ -6,7 +6,9 @@ import (
 	"github.com/RafatMeraz/ecom-micro/auth/database"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/handler"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/middleware"
+	"github.com/RafatMeraz/ecom-micro/auth/internal/repository"
 	"github.com/RafatMeraz/ecom-micro/auth/internal/routes"
+	"github.com/RafatMeraz/ecom-micro/auth/internal/service"
 	"github.com/RafatMeraz/ecom-micro/auth/server/http"
 	"github.com/RafatMeraz/ecom-micro/pkg/logger"
 	capi "github.com/hashicorp/consul/api"
@@ -22,8 +24,10 @@ func main() {
 		configs.Module,
 		database.Module,
 		http.Module,
-		handler.Module,
 		middleware.Module,
+		repository.Module,
+		service.Module,
+		handler.Module,
 		fx.Invoke(func() {
 			authLogger := logger.NewLogger("auth")
 			slog.SetDefault(authLogger)

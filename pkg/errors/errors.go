@@ -12,7 +12,7 @@ var (
 	ErrNoContent                = errors.New("no content")
 	ErrDatabaseOperation        = errors.New("failed database operation")
 	ErrRecordNotFound           = errors.New("record not found")
-	ErrUsernameExists           = errors.New("username exists")
+	ErrEmailExists              = errors.New("email already exists")
 	ErrUnAuthorization          = errors.New("unauthorized")
 	ErrFileUploadFailed         = errors.New("failed file upload")
 	ErrProductCodeExists        = errors.New("product code exists")

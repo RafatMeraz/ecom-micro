@@ -19,7 +19,7 @@ func GetErrorResponse(err error) (int, models.Response) {
 		statusCode = http.StatusOK
 		response = models.SuccessResponse{Data: []string{}}
 		break
-	case errors.Is(err, ErrUsernameExists):
+	case errors.Is(err, ErrEmailExists):
 		statusCode = http.StatusBadRequest
 		response = models.ErrorResponseModel{Message: err.Error()}
 		break
@@ -38,13 +38,25 @@ func GetErrorResponse(err error) (int, models.Response) {
 		statusCode = http.StatusNotFound
 		response = models.ErrorResponseModel{Message: err.Error()}
 	case errors.Is(err, ErrNoDataFound):
+		statusCode = http.StatusBadRequest
+		response = models.ErrorResponseModel{Message: err.Error()}
+		break
 	case errors.Is(err, ErrRequiredParamsMissing):
+		statusCode = http.StatusBadRequest
+		response = models.ErrorResponseModel{Message: err.Error()}
+		break
 	case errors.Is(err, ErrProductCodeExists):
+		statusCode = http.StatusBadRequest
+		response = models.ErrorResponseModel{Message: err.Error()}
+		break
 	case errors.Is(err, ErrStockUnavailable):
+		statusCode = http.StatusBadRequest
+		response = models.ErrorResponseModel{Message: err.Error()}
+		break
 	case errors.Is(err, ErrInvalidToken):
 		statusCode = http.StatusBadRequest
 		response = models.ErrorResponseModel{Message: err.Error()}
-
+		break
 	}
 
 	return statusCode, response

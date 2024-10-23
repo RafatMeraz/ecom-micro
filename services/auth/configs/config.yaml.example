@@ -5,7 +5,7 @@ HttpServer:
 DB:
   host: localhost
   port: 5432
-  pass: user@pass
+  password: user@pass
   name: ecom_micro_auth_db
   user: root
 RateLimit:

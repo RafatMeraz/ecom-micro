@@ -6,6 +6,7 @@ import (
 	ce "github.com/RafatMeraz/ecom-micro/pkg/errors"
 	"gorm.io/gorm"
 	"log/slog"
+	"strings"
 )
 
 type UserRepository interface {
@@ -29,7 +30,10 @@ func (u UserRepositoryImpl) CreateUser(user model.User) (model.User, error) {
 	result := u.db.Create(&user)
 	if result.Error != nil {
 		slog.Error(result.Error.Error())
-		return user, result.Error
+		if strings.Contains(result.Error.Error(), "duplicate key value violates unique constraint") {
+			return user, ce.ErrEmailExists
+		}
+		return user, ce.ErrDatabaseOperation
 	}
 	return user, nil
 }

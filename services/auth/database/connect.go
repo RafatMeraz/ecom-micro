@@ -13,7 +13,7 @@ func NewDatabaseInstance(cnf *configs.Config) *gorm.DB {
 	dsn := fmt.Sprintf(dsnStr, cnf.DB.Host, cnf.DB.User, cnf.DB.Password, cnf.DB.Name, cnf.DB.Port)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
+		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
 		panic("failed to connect database => " + err.Error())
