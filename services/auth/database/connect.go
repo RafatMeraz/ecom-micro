@@ -6,6 +6,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"time"
 )
 
 func NewDatabaseInstance(cnf *configs.Config) *gorm.DB {
@@ -18,5 +19,15 @@ func NewDatabaseInstance(cnf *configs.Config) *gorm.DB {
 	if err != nil {
 		panic("failed to connect database => " + err.Error())
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		panic("failed to connect database => " + err.Error())
+	}
+
+	sqlDB.SetMaxOpenConns(20)
+	sqlDB.SetMaxIdleConns(3)
+	sqlDB.SetConnMaxLifetime(time.Minute * 10)
+
 	return db
 }
