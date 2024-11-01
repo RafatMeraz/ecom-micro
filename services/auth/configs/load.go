@@ -39,6 +39,9 @@ func NewConfig() (*Config, error) {
 		RateLimitConfig: models.RateLimitConfig{
 			RequestsPerMin: v.GetInt("RateLimit.limitPerMin"),
 		},
+		PasswordHash: Hash{
+			Salt: v.GetString("Hash.passwordSalt"),
+		},
 	}
 
 	return &config, nil

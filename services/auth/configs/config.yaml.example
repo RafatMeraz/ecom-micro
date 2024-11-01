@@ -10,3 +10,5 @@ DB:
   user: root
 RateLimit:
   limitPerMin: 100
+Hash:
+  passwordSalt: "salt"

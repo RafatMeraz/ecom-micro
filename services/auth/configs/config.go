@@ -6,6 +6,7 @@ type Config struct {
 	HTTPServer      HTTPServerConfig
 	DB              DBConfig
 	RateLimitConfig models.RateLimitConfig
+	PasswordHash    Hash
 }
 
 type HTTPServerConfig struct {
@@ -20,4 +21,8 @@ type DBConfig struct {
 	Password string
 	Name     string
 	User     string
+}
+
+type Hash struct {
+	Salt string
 }
