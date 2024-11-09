@@ -1,12 +1,16 @@
 package configs
 
-import "github.com/RafatMeraz/ecom-micro/pkg/models"
+import (
+	"github.com/RafatMeraz/ecom-micro/pkg/models"
+	"github.com/RafatMeraz/ecom-micro/pkg/service"
+)
 
 type Config struct {
 	HTTPServer      HTTPServerConfig
 	DB              DBConfig
 	RateLimitConfig models.RateLimitConfig
 	PasswordHash    Hash
+	TokenConfig     *service.JwtServiceConfig
 }
 
 type HTTPServerConfig struct {

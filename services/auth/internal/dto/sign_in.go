@@ -8,11 +8,11 @@ type SignInRequest struct {
 }
 
 type SignInResponse struct {
-	Token string       `json:"token"`
-	User  UserResponse `json:"user"`
+	Token map[string]any `json:"token"`
+	User  UserResponse   `json:"user"`
 }
 
-func NewSignInResponse(token string, user model.User) SignInResponse {
+func NewSignInResponse(token map[string]any, user model.User) SignInResponse {
 	return SignInResponse{
 		Token: token,
 		User:  NewUserResponseFromEntity(user),

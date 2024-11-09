@@ -12,3 +12,7 @@ RateLimit:
   limitPerMin: 100
 Hash:
   passwordSalt: "salt"
+JWT:
+  SECRET_KEY: "secret_key"
+  TOKEN_EXPIRE_DAY: 7
+  REFRESH_TOKEN_EXPIRE_DAY: 30

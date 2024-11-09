@@ -3,6 +3,7 @@ package configs
 import (
 	"fmt"
 	"github.com/RafatMeraz/ecom-micro/pkg/models"
+	"github.com/RafatMeraz/ecom-micro/pkg/service"
 	"github.com/spf13/viper"
 )
 
@@ -41,6 +42,12 @@ func NewConfig() (*Config, error) {
 		},
 		PasswordHash: Hash{
 			Salt: v.GetString("Hash.passwordSalt"),
+		},
+		TokenConfig: &service.JwtServiceConfig{
+			JwtSecret:               v.GetString("Jwt.secretKey"),
+			RefreshJwtSecret:        v.GetString("Jwt.refreshTokenSecretKey"),
+			TokenExpireAtDay:        v.GetInt("Jwt.tokenExpireDay"),
+			RefreshTokenExpireAtDay: v.GetInt("Jwt.refreshTokenExpireDay"),
 		},
 	}
 

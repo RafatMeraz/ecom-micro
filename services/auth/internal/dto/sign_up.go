@@ -19,13 +19,13 @@ func (r SignUpRequest) ToModel() model.User {
 }
 
 type SignUpResponse struct {
-	Token        string       `json:"token"`
-	UserResponse UserResponse `json:"user"`
+	Token        map[string]any `json:"token"`
+	UserResponse UserResponse   `json:"user"`
 }
 
-func NewSignUpResponseFromEntity(user model.User) SignUpResponse {
+func NewSignUpResponseFromEntity(token map[string]any, user model.User) SignUpResponse {
 	return SignUpResponse{
-		Token:        "",
+		Token:        token,
 		UserResponse: NewUserResponseFromEntity(user),
 	}
 }
