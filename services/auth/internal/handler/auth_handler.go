@@ -46,3 +46,23 @@ func (a AuthHandler) SignUp(c *fiber.Ctx) error {
 
 	return c.Status(http.StatusCreated).JSON(res)
 }
+
+func (a AuthHandler) SignIn(c *fiber.Ctx) error {
+	var signInRequest dto.SignInRequest
+	if err := c.BodyParser(&signInRequest); err != nil {
+		statusCode, res := ce.GetErrorResponse(ce.ErrInvalidData)
+		return c.Status(statusCode).JSON(res)
+	}
+
+	if err := a.validator.Struct(signInRequest); err != nil {
+		statusCode, res := ce.GetErrorResponse(ce.ErrRequiredFieldsMissing)
+		return c.Status(statusCode).JSON(res)
+	}
+	signInRes, err := a.userService.SignIn(signInRequest)
+	if err != nil {
+		statusCode, res := ce.GetErrorResponse(err)
+		return c.Status(statusCode).JSON(res)
+	}
+	statusCode, res := response.GenerateResponse(signInRes, nil, false)
+	return c.Status(statusCode).JSON(res)
+}

@@ -13,6 +13,7 @@ func SetUpRoutes(
 
 	router.Get("/health", healthHandler.GetHealth)
 	router.Post("/sign-up", authHandler.SignUp)
+	router.Post("/sign-in", authHandler.SignIn)
 
 	return app
 }
